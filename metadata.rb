@@ -1,0 +1,7 @@
+name 'n1nj4net-dns'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures n1nj4net-dns'
+long_description 'Installs/Configures n1nj4net-dns'
+version '0.1.0'
