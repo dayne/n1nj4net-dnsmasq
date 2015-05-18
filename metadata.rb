@@ -6,5 +6,4 @@ description 'Installs/Configures n1nj4net-dns'
 long_description 'Installs/Configures n1nj4net-dns'
 version '0.1.0'
 
-depends 'resolver', '~> 1.3.0'
 depends 'dnsmasq', '~> 0.2.0'

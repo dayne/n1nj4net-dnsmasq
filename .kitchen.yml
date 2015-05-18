@@ -11,5 +11,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[n1nj4net-dns::default]
+      - recipe[n1nj4net-dnsmasq::default]
     attributes:
