@@ -1,4 +1,4 @@
-name 'n1nj4net-dns'
+name 'n1nj4net-dnsmasq'
 maintainer 'Dayne Broderson'
 maintainer_email 'broderson@gmail.com'
 license 'MIT'

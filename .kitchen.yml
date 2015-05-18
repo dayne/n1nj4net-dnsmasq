@@ -13,7 +13,3 @@ suites:
     run_list:
       - recipe[n1nj4net-dns::default]
     attributes:
-  - name: server
-    run_list:
-      - recipe[n1nj4net-dns::server]
-    attributes:

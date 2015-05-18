@@ -5,13 +5,11 @@
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 #
 
-#node['resolver']['search'] = 
-#node['resolver']['domain'] = 
+tag('dns-server')
 
-dns_server_options = search(:node, 'tag:dns-server', filter_result: {'ip' => ['ipaddress']})
-dns_servers = dns_server_options.collect(&:values) 
-dns_servers.push '8.8.8.8' # always give me a google DNS
+#node.force_default[:dnsmasq][:enable_dhcp] = false              # TODO later
+node.override[:dnsmasq]['dns']['server'] = [ '205.171.3.65', '64.13.48.12', '8.8.8.8' ] 
+include_recipe 'dnsmasq::dns'
 
-node.override['resolver']['nameservers'] = dns_servers
-
-include_recipe 'resolver'
+#include_recipe 'dnsmasq::manage_hostsfile'                     # TODO later
+#include_recipe 'dnsmasq::dhcp'                                 # TODO later
