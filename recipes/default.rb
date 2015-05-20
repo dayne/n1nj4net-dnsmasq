@@ -7,11 +7,29 @@
 
 tag('dns-server')
 
-node.override[:dnsmasq]['dns']['server'] = [ '205.171.3.65', '64.13.48.12', '8.8.8.8' ] 
+directory "/etc/dnsmasq.d/static" do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+template "dnsmasq_hosts" do
+  source "dnsmasq_hosts.erb"
+  owner 'root'
+  group 'root'
+  mode '0644'
+  path "/etc/dnsmasq.d/static/hosts.conf"  # FIX ME - USE VARABLE
+  action :create
+end
+
+node.override[:dnsmasq][:dns]['server'] = [ '205.171.3.65', '64.13.48.12', '8.8.8.8' ] 
 
 node.override[:dnsmasq][:enable_dhcp] = true
 node.override[:dnsmasq]['dhcp'] = {
+    'domain-needed' => nil,   # do not pass short names to upstream DNS - return "not found"
     'dhcp-authoritative' => nil,
+    'addn-hosts' => '/etc/dnsmasq.d/static/hosts.conf',
     'dhcp-range' => 'eth0,10.47.11.100,10.47.11.200,200h',
     'dhcp-option'=> 'option:router,10.47.11.1',
     'domain' => 'n1nj4.net',
