@@ -13,6 +13,7 @@ node.override[:dnsmasq][:enable_dhcp] = true
 node.override[:dnsmasq]['dhcp'] = {
     'dhcp-authoritative' => nil,
     'dhcp-range' => 'eth0,10.47.11.100,10.47.11.200,200h',
+    'dhcp-option'=> 'option:router,10.47.11.1',
     'domain' => 'n1nj4.net',
     'expand-hosts' => nil,
     'local' => '/n1nj4.net/',
@@ -23,9 +24,15 @@ node.override[:dnsmasq]['dhcp'] = {
     'tftp-root' => '/opt/tftpboot',
     'tftp-secure' => nil
 }
+
+=begin
+# This isn't working right - not sure how to get the options working
 node.override[:dnsmasq]['dhcp-options'] = [
-  'eth0,3,10.47.11.1', # default gateway
+    'dhcp-option=option:router,10.47.11.1',
+    'dhcp-range=tfp,10.47.11.50,10.47.11.60'
+    #'dhcp-option=option:ntp-server,10.47.11.3', #TODO
 ]
+=end
 
 include_recipe 'dnsmasq::dns'
 include_recipe 'dnsmasq::dhcp'
