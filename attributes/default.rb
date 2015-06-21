@@ -23,6 +23,7 @@ default[:dnsmasq]['dhcp'] = {
 # This isn't working right - not sure how to get the options working
 override[:dnsmasq]['dhcp-options'] = [
     'dhcp-option=option:router,10.47.11.1',
+    'dns-option=domain-search,home.n1nj4.net',
     'dhcp-range=tfp,10.47.11.50,10.47.11.60'
     #'dhcp-option=option:ntp-server,10.47.11.3', #TODO
 ]
