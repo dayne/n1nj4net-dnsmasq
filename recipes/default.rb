@@ -19,12 +19,20 @@ directory "/etc/dnsmasq.d/static" do
   action :create
 end
 
-cookbook_file "hosts.conf" do
+cookbook_file "static_hosts.conf" do
   owner 'root'
   group 'root'
   mode '0644'
-  path "/etc/dnsmasq.d/static/hosts.conf"  # FIX ME - USE VARABLE
+  path "/etc/dnsmasq.d/static/static_hosts.conf"  # FIX ME - USE VARABLE
   action :create
-  notifies :reload, "service[dnsmasq]", :delayed
+  notifies :restart, "service[dnsmasq]", :delayed
 end
 
+cookbook_file "dhcp_hosts.conf" do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  path "/etc/dnsmasq.d/static/dhcp_hosts.conf"
+  action :create
+  notifies :restart, "service[dnsmasq]", :delayed
+end
