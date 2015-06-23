@@ -19,7 +19,7 @@ directory "/etc/dnsmasq.d/static" do
   action :create
 end
 
-file "static_hosts" do
+cookbook_file "hosts.conf" do
   owner 'root'
   group 'root'
   mode '0644'
