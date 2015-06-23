@@ -19,8 +19,7 @@ directory "/etc/dnsmasq.d/static" do
   action :create
 end
 
-template "dnsmasq_hosts" do
-  source "dnsmasq_hosts.erb"
+file "static_hosts" do
   owner 'root'
   group 'root'
   mode '0644'
