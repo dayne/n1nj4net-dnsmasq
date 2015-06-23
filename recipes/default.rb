@@ -25,5 +25,6 @@ cookbook_file "hosts.conf" do
   mode '0644'
   path "/etc/dnsmasq.d/static/hosts.conf"  # FIX ME - USE VARABLE
   action :create
+  notifies :reload, "service[dnsmasq]", :delayed
 end
 
